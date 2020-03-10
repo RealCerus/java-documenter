@@ -48,6 +48,8 @@ public class JavaDocsGenerator {
             }
         }
 
+        System.out.println("Test: " + System.getenv("GITHUB_REPOSITORY"));
+
         System.out.println("Starting generation.. Writing to " + outputFile.getAbsolutePath());
 
         StringBuilder markdownPageBuilder = new StringBuilder("# Class documentation\n" +
