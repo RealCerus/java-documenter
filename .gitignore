@@ -1,3 +1,6 @@
+# Project specific files
+DOCS.md
+
 # Built application files
 *.apk
 *.aar
@@ -9,6 +12,9 @@
 
 # Java class files
 *.class
+
+# Maven files
+target/
 
 # Generated files
 bin/
@@ -38,6 +44,7 @@ captures/
 
 # IntelliJ
 *.iml
+.idea/
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/gradle.xml
