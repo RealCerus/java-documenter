@@ -16,6 +16,7 @@ Generates a Markdown file which contains documentation for specific java classes
 
 ## Usage
 `java -jar javadocsgenerator-VERSION.jar --files=FILENAME.java,ANOTHER_FILENAME.java,... --output=JAVA_DOCS.md`
+> NOTE: To use a class for documentation generation add a '//DOC' comment over the class declaration and over every method which you want to use. Alternatively you can use java doc comments for methods.
 
 Arguments:\
 `--files`: Required. Specifies the files that should be used for documentation generation.\
