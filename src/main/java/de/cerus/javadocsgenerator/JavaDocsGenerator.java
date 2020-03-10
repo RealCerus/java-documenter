@@ -139,6 +139,7 @@ public class JavaDocsGenerator {
             }
 
             try {
+                System.out.println("Committing...");
                 HttpURLConnection connection = (HttpURLConnection) new URL("https://api.github.com/repos/"
                         + repo + "/contents/" + outputFile.getName()).openConnection();
 
@@ -158,6 +159,8 @@ public class JavaDocsGenerator {
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
                 outputStreamWriter.write(jsonObject.toString());
                 outputStreamWriter.close();
+
+                System.out.println("Finished with status code: "+connection.getResponseCode());
             } catch (IOException e) {
                 e.printStackTrace();
             }
