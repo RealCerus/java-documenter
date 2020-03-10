@@ -8,8 +8,14 @@ import java.util.stream.Collectors;
 public class Documentation {
 
     private AccessModifier accessModifier;
-    private boolean finalModifier, staticModifier, abstractModifier, syncModifier, nativeModifier, strictfpModifier;
-    private String returnType, name;
+    private boolean finalModifier,
+            staticModifier,
+            abstractModifier,
+            syncModifier,
+            nativeModifier,
+            strictfpModifier;
+    private String returnType,
+            name;
     private Parameter[] parameters;
     private String description;
 
@@ -87,7 +93,7 @@ public class Documentation {
 
     public String toMarkdownString() {
         return "### " + toString().replace("<", "\\<") + '\n' +
-                (description == null || description.equals("")
+                (description == null || "".equals(description)
                         ? "*No description available*" : "```\n" + description + "\n```");
     }
 
@@ -137,7 +143,8 @@ public class Documentation {
 
     public static class Parameter {
         public String className;
-        public boolean array, varargs;
+        public boolean array,
+                varargs;
 
         public Parameter(String className, boolean array, boolean varargs) {
             this.className = className;
