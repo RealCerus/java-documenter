@@ -25,6 +25,7 @@ Arguments:\
 [src/main/java/example](https://github.com/RealCerus/java-documenter/tree/master/src/main/java/example)
 
 ## Todo
+-   Add wildcard support for file names
 -   Make a GitHub Action
 -   Implement feature requests
 
