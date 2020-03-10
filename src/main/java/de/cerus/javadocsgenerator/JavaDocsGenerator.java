@@ -6,6 +6,9 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
@@ -19,13 +22,37 @@ public class JavaDocsGenerator {
         List<String> argsList = Arrays.asList(args);
 
         // Parse files
-        List<File> fileList = argsList.stream()
+        List<File> fileList = argsList.contains("--files=*") ? new ArrayList<>()
+                : argsList.stream()
                 .filter(arg -> arg.startsWith("--files="))
                 .flatMap(arg -> Arrays.stream(arg.substring(8).split(",")))
                 .filter(fileName -> fileName.endsWith(".java"))
                 .map(File::new)
                 .filter(File::exists)
                 .collect(Collectors.toList());
+        if (argsList.contains("--files=*")) {
+            File ignoredFolders = new File("JAVADOCSGEN_IGNORED.txt");
+            if (!ignoredFolders.exists()) {
+                try {
+                    ignoredFolders.createNewFile();
+                    Files.write(ignoredFolders.toPath(), Arrays.asList("java-documenter"), StandardOpenOption.WRITE);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            List<String> ignoredFoldersList;
+            try {
+                ignoredFoldersList = Files.readAllLines(ignoredFolders.toPath()).stream()
+                        .filter(s -> !s.equals(""))
+                        .collect(Collectors.toList());
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+
+            File file = new File(".");
+            visitAndAddFiles(file, fileList, ignoredFoldersList);
+        }
         if (fileList.isEmpty()) {
             // No files found
             System.err.println("No files provided. Use --files=Filename.java,Filename2.java");
@@ -116,7 +143,7 @@ public class JavaDocsGenerator {
                         + repo + "/contents/" + outputFile.getName()).openConnection();
 
                 connection.setRequestMethod("PUT");
-                connection.setRequestProperty("Authorization", "token "+githubToken);
+                connection.setRequestProperty("Authorization", "token " + githubToken);
                 connection.setRequestProperty("user-agent", "JavaDocsGen");
                 connection.setRequestProperty("accept", "application/vnd.github.v3+json");
 
@@ -133,6 +160,23 @@ public class JavaDocsGenerator {
                 outputStreamWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    private static void visitAndAddFiles(File file, List<File> fileList, List<String> ignoredFoldersList) {
+        File[] files = file.listFiles();
+        if (files != null) {
+            for (File file1 : files) {
+                if (file1.isDirectory()) {
+                    if (ignoredFoldersList.contains(file1.getName())) continue;
+                    visitAndAddFiles(file1, fileList, ignoredFoldersList);
+                    continue;
+                }
+
+                if (file1.getName().endsWith(".java")) {
+                    fileList.add(file1);
+                }
             }
         }
     }
