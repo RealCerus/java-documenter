@@ -115,6 +115,7 @@ public class JavaDocsGenerator {
                         + repo + "/contents/" + outputFile.getName()).openConnection();
 
                 connection.setRequestMethod("PUT");
+                connection.setRequestProperty("Authorization", "token "+githubToken);
                 connection.setRequestProperty("user-agent", "JavaDocsGen");
                 connection.setRequestProperty("accept", "application/vnd.github.v3+json");
 
