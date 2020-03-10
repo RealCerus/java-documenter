@@ -21,6 +21,9 @@ Arguments:\
 `--files`: Required. Specifies the files that should be used for documentation generation.\
 `--output`: Optional. Will default to `./JAVA_DOC.md`. Specifies the file in which the generated documentation should be saved.
 
+## Examples
+[src/main/java/example](https://github.com/RealCerus/java-documenter/tree/master/src/main/java/example)
+
 ## Todo
 -   Make a GitHub Action
 -   Implement feature requests
