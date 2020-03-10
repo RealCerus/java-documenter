@@ -94,7 +94,7 @@ public class Documentation {
     public String toMarkdownString() {
         return "### " + toString().replace("<", "\\<") + '\n' +
                 (description == null || "".equals(description)
-                        ? "*No description available*" : "```\n" + description + "\n```");
+                        ? "*No description available*" : "```plain\n" + description + "\n```");
     }
 
     public AccessModifier getAccessModifier() {
