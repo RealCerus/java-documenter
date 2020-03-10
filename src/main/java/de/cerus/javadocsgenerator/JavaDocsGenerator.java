@@ -36,7 +36,7 @@ public class JavaDocsGenerator {
                 .filter(arg -> arg.startsWith("--output="))
                 .map(arg -> new File(arg.substring(9)))
                 .findAny()
-                .orElse(new File("JAVA_DOC.md"));
+                .orElse(new File("./JAVA_DOC.md"));
         if (!outputFile.exists()) {
             // Try to create the output file
             try {
