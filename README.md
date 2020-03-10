@@ -1,4 +1,4 @@
-![GitHub](https://img.shields.io/github/license/RealCerus/java-documenter) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/098ee136153a4f44bcb68000aecadcf9)](https://www.codacy.com/manual/RealCerus/java-documenter?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RealCerus/java-documenter&amp;utm_campaign=Badge_Grade) ![Discord](https://img.shields.io/discord/405752989182197760)
+[![GitHub](https://img.shields.io/github/license/RealCerus/java-documenter)](https://github.com/RealCerus/java-documenter/blob/master/LICENSE) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/098ee136153a4f44bcb68000aecadcf9)](https://www.codacy.com/manual/RealCerus/java-documenter?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RealCerus/java-documenter&amp;utm_campaign=Badge_Grade) ![Discord](https://img.shields.io/discord/405752989182197760)
 
 # java-documenter
 Generates a Markdown file which contains documentation for specific java classes and methods.
@@ -26,4 +26,4 @@ Arguments:\
   - Implement feature requests
 
 ## License
-This project is licensed under the GPLv3.
+This project is licensed under the [GPLv3](https://github.com/RealCerus/java-documenter/blob/master/LICENSE).
