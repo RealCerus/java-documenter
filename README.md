@@ -11,7 +11,7 @@ Generates a Markdown file which contains documentation for specific java classes
 
 
 **Releases:**\
-There are currently no releases.
+![GitHub Releases](https://img.shields.io/github/downloads/RealCerus/java-documenter/latest/total)
 
 ## Usage
 `java -jar javadocsgenerator-VERSION.jar --files=FILENAME.java,ANOTHER_FILENAME.java,... --output=JAVA_DOCS.md`
