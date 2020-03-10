@@ -22,8 +22,8 @@ Arguments:\
 `--output`: Optional. Will default to `./JAVA_DOC.md`. Specifies the file in which the generated documentation should be saved.
 
 ## Todo
-  - Make a GitHub Action
-  - Implement feature requests
+-  Make a GitHub Action
+-  Implement feature requests
 
 ## License
 This project is licensed under the [GPLv3](https://github.com/RealCerus/java-documenter/blob/master/LICENSE).
