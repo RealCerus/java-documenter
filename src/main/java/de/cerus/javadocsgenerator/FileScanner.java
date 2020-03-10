@@ -22,7 +22,7 @@ public class FileScanner {
             String line = contents.get(lineNo);
 
             // Checks if line is a valid class declaration, returns null if no '//DOC' comment is specified
-            if (line.matches("(private |public |protected |)(static)?class [A-Za-z0-9_]+ \\{")) {
+            if (line.matches("(private |public |protected |)(static )?(abstract )?(final )?class [A-Za-z0-9_]+ \\{")) {
                 String lineBefore = contents.get(lineNo - 1);
                 if (!lineBefore.equalsIgnoreCase("//DOC")) return null;
             }
@@ -37,7 +37,7 @@ public class FileScanner {
             // Checks if line is a valid method head
             // If true: Scans the method head
             if (line.trim().matches("(private |public |protected |)((native )?(abstract )?(strictfp )" +
-                    "?(synchronized )?(static )?(final )?)[A-Za-z0-9_ <>?]+\\(([A-Za-z0-9_\\[\\]., <>?]+)?\\) \\{")) {
+                    "?(synchronized )?(static )?(final )?)[A-Za-z0-9_ <>?]+\\(([A-Za-z0-9_\\[\\]., <>?]+)?\\)( \\{|;)")) {
                 scanMethod(lineNo, documentations);
             }
         }
@@ -60,6 +60,9 @@ public class FileScanner {
         if (!flag) {
             int ogLineNo = lineNo;
             String prevLine = contents.get(lineNo - 1);
+            while (prevLine.trim().startsWith("@"))
+                prevLine = contents.get(--lineNo);
+            //lineNo = ogLineNo;
 
             // Checks if the line is a valid ending of a java doc comment
             if (prevLine.trim().equals("*/")) {
