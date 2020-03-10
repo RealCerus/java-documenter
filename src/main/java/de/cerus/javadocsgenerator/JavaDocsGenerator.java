@@ -1,9 +1,13 @@
 package de.cerus.javadocsgenerator;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import com.google.gson.JsonObject;
+
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,9 +51,6 @@ public class JavaDocsGenerator {
                 return;
             }
         }
-
-        System.out.println("Test: " + System.getenv("GITHUB_REPOSITORY"));
-        System.out.println("Test: " + System.getenv("GITHUB_TOKEN"));
 
         System.out.println("Starting generation.. Writing to " + outputFile.getAbsolutePath());
 
@@ -98,6 +99,46 @@ public class JavaDocsGenerator {
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Failed to write to output file.");
+        }
+
+        if (argsList.contains("--commit")) {
+            String githubToken = System.getenv("GITHUB_TOKEN");
+            String repo = System.getenv("GITHUB_REPOSITORY");
+
+            if (githubToken == null || repo == null) {
+                System.err.println("Cannot commit: Secret / Repo env is null");
+                return;
+            }
+
+            try {
+                HttpURLConnection connection = (HttpURLConnection) new URL("https://api.github.com/repos/"
+                        + repo + "/contents/" + outputFile.getName()).openConnection();
+
+                connection.setRequestMethod("PUT");
+                connection.setRequestProperty("user-agent", "JavaDocsGen");
+                connection.setRequestProperty("accept", "application/vnd.github.v3+json");
+
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.addProperty("message", "Add generated docs");
+                jsonObject.addProperty("content", Base64.getEncoder()
+                        .encodeToString(markdownPageBuilder.toString().getBytes(StandardCharsets.UTF_8)));
+
+                connection.setDoOutput(true);
+                connection.setDoInput(true);
+
+                OutputStream outputStream = connection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+                outputStreamWriter.write(jsonObject.toString());
+                outputStreamWriter.close();
+
+                InputStream inputStream = connection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                String s;
+                while ((s = reader.readLine()) != null)
+                    System.out.println(s);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
