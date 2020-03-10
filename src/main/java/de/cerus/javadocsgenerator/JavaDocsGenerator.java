@@ -101,6 +101,7 @@ public class JavaDocsGenerator {
             System.err.println("Failed to write to output file.");
         }
 
+        // Commit the generated docs to a repository
         if (argsList.contains("--commit")) {
             String githubToken = System.getenv("GITHUB_TOKEN");
             String repo = System.getenv("GITHUB_REPOSITORY");
@@ -125,18 +126,11 @@ public class JavaDocsGenerator {
                         .encodeToString(markdownPageBuilder.toString().getBytes(StandardCharsets.UTF_8)));
 
                 connection.setDoOutput(true);
-                connection.setDoInput(true);
 
                 OutputStream outputStream = connection.getOutputStream();
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
                 outputStreamWriter.write(jsonObject.toString());
                 outputStreamWriter.close();
-
-                InputStream inputStream = connection.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                String s;
-                while ((s = reader.readLine()) != null)
-                    System.out.println(s);
             } catch (IOException e) {
                 e.printStackTrace();
             }
