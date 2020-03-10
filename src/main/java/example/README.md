@@ -9,14 +9,14 @@
 *No description available*
 
 ### public String toString()
-```
+```plain
 Returns a string which contains fields and their values.
 @since 1.0
 ```
 
 ## Pet
 ### public abstract void playWithPet(Person)
-```
+```plain
 Represents a person who's playing with their pet
 @param person: the person who's playing with the pet
 ```
