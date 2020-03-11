@@ -1,6 +1,8 @@
 package example;
 
-//DOC
+import de.cerus.javadocsgenerator.annotations.DocumentationScan;
+
+@DocumentationScan
 public abstract class Pet {
 
     private String name;
@@ -13,14 +15,15 @@ public abstract class Pet {
 
     /**
      * Represents a person who's playing with their pet
+     *
      * @param person: the person who's playing with the pet
      */
     public abstract void playWithPet(Person person);
 
-    //DOC
+    @DocumentationScan
     public abstract void sleep();
 
-    //DOC
+    @DocumentationScan
     public abstract void eat();
 
     public String getName() {
