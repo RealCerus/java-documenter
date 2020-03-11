@@ -1,0 +1,26 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "RealCerus",
+      "name": "Maximilian D.",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/46848982?v=4",
+      "profile": "https://cerus-dev.de",
+      "contributions": [
+        "code",
+        "doc",
+        "example"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "java-documenter",
+  "projectOwner": "RealCerus",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
