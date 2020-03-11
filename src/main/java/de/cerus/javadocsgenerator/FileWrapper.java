@@ -14,8 +14,7 @@ public class FileWrapper {
     }
 
     public List<File> getFiles() {
-        File file = new File(path);
-        Paths paths = new Paths(file.getParentFile() != null ? file.getParentFile().getPath() : ".", file.getName());
+        Paths paths = new Paths(path);
         return paths.getFiles();
     }
 
