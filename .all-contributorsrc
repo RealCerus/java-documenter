@@ -12,7 +12,8 @@
       "profile": "https://cerus-dev.de",
       "contributions": [
         "code",
-        "doc"
+        "doc",
+        "example"
       ]
     }
   ],
