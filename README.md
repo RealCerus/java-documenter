@@ -1,7 +1,7 @@
 [![GitHub](https://img.shields.io/github/license/RealCerus/java-documenter)](https://github.com/RealCerus/java-documenter/blob/master/LICENSE) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/098ee136153a4f44bcb68000aecadcf9)](https://www.codacy.com/manual/RealCerus/java-documenter?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RealCerus/java-documenter&amp;utm_campaign=Badge_Grade) ![Discord](https://img.shields.io/discord/405752989182197760)
 
 # java-documenter
-Generates a Markdown file which contains documentation for specific java classes and methods.
+Generates Java documentation in form of a Markdown file.
 > NOTE: This software does only work for java source files (.java) and **not** for compiled java files (.class)
 
 ## Installation
