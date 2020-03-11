@@ -21,10 +21,10 @@ public class FileScanner {
         for (int lineNo = 0; lineNo < contents.size(); lineNo++) {
             String line = contents.get(lineNo);
 
-            // Checks if line is a valid class declaration, returns null if no '//DOC' comment is specified
+            // Checks if line is a valid class declaration, returns null if no '@DocumentationScan' annotation is specified
             if (line.matches("(private |public |protected |)(static )?(abstract )?(final )?class [A-Za-z0-9_]+ \\{")) {
                 String lineBefore = contents.get(lineNo - 1);
-                if (!lineBefore.equalsIgnoreCase("//DOC")) return null;
+                if (!lineBefore.equalsIgnoreCase("@DocumentationScan")) return null;
             }
         }
 
@@ -49,14 +49,14 @@ public class FileScanner {
     private void scanMethod(int lineNo, List<Documentation> documentations) {
         boolean flag = false;
 
-        // Set flag if method has '//DOC' comment
-        if (contents.get(lineNo - 1).trim().equalsIgnoreCase("//DOC")) {
+        // Set flag if method has '@DocumentationScan' annotation
+        if (contents.get(lineNo - 1).trim().equalsIgnoreCase("@DocumentationScan")) {
             flag = true;
         }
 
         List<String> descList = new ArrayList<>();
 
-        // If no '//DOC' comment is found check for a valid java doc comment
+        // If no '@DocumentationScan' annotation is found check for a valid java doc comment
         if (!flag) {
             int ogLineNo = lineNo;
             String prevLine = contents.get(lineNo - 1);
@@ -86,7 +86,7 @@ public class FileScanner {
             }
         }
 
-        // Returns if neither a '//DOC' nor a valid java doc comment is found
+        // Returns if neither a '@DocumentationScan' nor a valid java doc comment is found
         if (!flag) return;
 
         String line = contents.get(lineNo).trim();

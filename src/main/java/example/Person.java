@@ -1,6 +1,8 @@
 package example;
 
-//DOC
+import de.cerus.javadocsgenerator.annotations.DocumentationScan;
+
+@DocumentationScan
 public class Person {
 
     private String name,
@@ -13,12 +15,12 @@ public class Person {
         this.age = age;
     }
 
-    //DOC
+    @DocumentationScan
     public void printFullName() {
         System.out.println(name + " " + surName);
     }
 
-    //DOC
+    @DocumentationScan
     public int getAgeDifference(Person otherPerson) {
         return Math.max(otherPerson.age, age) - Math.min(otherPerson.age, age);
     }
