@@ -18,8 +18,7 @@ public class JavaDocsGenerator {
         List<File> fileList = argsList.stream()
                 .filter(arg -> arg.startsWith("--files="))
                 .flatMap(arg -> Arrays.stream(arg.substring(8).split(",")))
-                .filter(fileName -> fileName.endsWith(".java"))
-                .map(File::new)
+                .flatMap(path -> new FileWrapper(path).getFiles().stream())
                 .filter(File::exists)
                 .collect(Collectors.toList());
         if (fileList.isEmpty()) {
@@ -28,7 +27,8 @@ public class JavaDocsGenerator {
             return;
         }
 
-        System.out.println("Found " + fileList.size() + " files");
+        System.out.println("Found " + fileList.size() + " files (" + fileList.stream()
+                .map(File::getName).collect(Collectors.joining(", ")) + ")");
 
         // Parsing output file
         // If no output file is specified a default one will be used
