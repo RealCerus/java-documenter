@@ -16,7 +16,7 @@ Generates Java documentation in form of a Markdown file.
 
 ## Usage
 `java -jar javadocsgenerator-VERSION.jar --files=FILENAME.java,ANOTHER_FILENAME.java,... --output=JAVA_DOCS.md`
-> NOTE: To use a class for documentation generation add a '//DOC' comment over the class declaration and over every method which you want to use. Alternatively you can use java doc comments for methods.
+> NOTE: To use a class for documentation generation add a '@DocumentationScan' annotation over the class declaration and over every method which you want to use. Alternatively you can use java doc comments for methods.
 
 Arguments:\
 `--files`: Required. Specifies the files that should be used for documentation generation.\
@@ -27,7 +27,7 @@ Arguments:\
 
 ## Todo
 -   ~~Add wildcard support for file names~~
--   Implement some sort of annotation system to replace the '//DOC' comment (It's ugly)
+-   ~~Implement some sort of annotation system to replace the '//DOC' comment (It's ugly)~~
 -   Parse stuff like '@since 1.0.0' or '@param xy' from java doc comments
 -   Make a GitHub Action
 -   Implement feature requests
