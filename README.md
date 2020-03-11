@@ -1,7 +1,4 @@
-[![GitHub](https://img.shields.io/github/license/RealCerus/java-documenter)](https://github.com/RealCerus/java-documenter/blob/master/LICENSE) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/098ee136153a4f44bcb68000aecadcf9)](https://www.codacy.com/manual/RealCerus/java-documenter?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RealCerus/java-documenter&amp;utm_campaign=Badge_Grade) ![Discord](https://img.shields.io/discord/405752989182197760)
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+[![GitHub](https://img.shields.io/github/license/RealCerus/java-documenter)](https://github.com/RealCerus/java-documenter/blob/master/LICENSE) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/098ee136153a4f44bcb68000aecadcf9)](https://www.codacy.com/manual/RealCerus/java-documenter?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RealCerus/java-documenter&amp;utm_campaign=Badge_Grade) ![Discord](https://img.shields.io/discord/405752989182197760)<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section --> [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat)](#contributors-) <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # java-documenter
 Generates Java documentation in form of a Markdown file.
