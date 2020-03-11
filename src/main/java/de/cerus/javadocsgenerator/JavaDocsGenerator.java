@@ -1,6 +1,7 @@
 package de.cerus.javadocsgenerator;
 
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -140,6 +141,33 @@ public class JavaDocsGenerator {
 
             try {
                 System.out.println("Committing...");
+
+                String sha = null;
+                try {
+                    HttpURLConnection connection = (HttpURLConnection) new URL("https://api.github.com/repos/"
+                            + repo + "/contents/" + outputFile.getName()).openConnection();
+                    connection.setRequestMethod("GET");
+                    connection.setRequestProperty("Authorization", "token " + githubToken);
+                    connection.setRequestProperty("user-agent", "JavaDocsGen");
+                    connection.setRequestProperty("accept", "application/vnd.github.v3+json");
+
+                    connection.setDoInput(true);
+
+                    InputStream inputStream = connection.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    StringBuilder builder = new StringBuilder();
+                    String s;
+                    while ((s = reader.readLine()) != null)
+                        builder.append(s).append("\n");
+
+                    if (connection.getResponseCode() == 200) {
+                        JsonObject jsonObject = JsonParser.parseString(builder.toString()).getAsJsonObject();
+                        sha = jsonObject.get("sha").getAsString();
+                    }
+                } catch (Exception ignored) {
+                }
+
+
                 HttpURLConnection connection = (HttpURLConnection) new URL("https://api.github.com/repos/"
                         + repo + "/contents/" + outputFile.getName()).openConnection();
 
@@ -152,6 +180,9 @@ public class JavaDocsGenerator {
                 jsonObject.addProperty("message", "Add generated docs");
                 jsonObject.addProperty("content", Base64.getEncoder()
                         .encodeToString(markdownPageBuilder.toString().getBytes(StandardCharsets.UTF_8)));
+                if (sha != null) {
+                    jsonObject.addProperty("sha", sha);
+                }
 
                 connection.setDoOutput(true);
 
@@ -160,7 +191,7 @@ public class JavaDocsGenerator {
                 outputStreamWriter.write(jsonObject.toString());
                 outputStreamWriter.close();
 
-                System.out.println("Finished with status code: "+connection.getResponseCode());
+                System.out.println("Finished with status code: " + connection.getResponseCode());
             } catch (IOException e) {
                 e.printStackTrace();
             }
