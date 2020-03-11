@@ -26,7 +26,7 @@ Arguments:\
 [src/main/java/example](https://github.com/RealCerus/java-documenter/tree/master/src/main/java/example)
 
 ## Todo
--   Add wildcard support for file names
+-   ~~Add wildcard support for file names~~
 -   Implement some sort of annotation system to replace the '//DOC' comment (It's ugly)
 -   Parse stuff like '@since 1.0.0' or '@param xy' from java doc comments
 -   Make a GitHub Action
