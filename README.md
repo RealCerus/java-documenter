@@ -30,6 +30,7 @@ Arguments:\
 -   ~~Implement some sort of annotation system to replace the '//DOC' comment (It's ugly)~~
 -   Parse stuff like '@since 1.0.0' or '@param xy' from java doc comments
 -   Make a GitHub Action
+-   Make a Maven plugin
 -   Implement feature requests
 
 ## Contributors ✨
